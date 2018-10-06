@@ -1,44 +1,56 @@
 {
-  "name": "react-simple-calendar",
-  "version": "0.1.0",
-  "description": "A minimal calendar component for react.",
-  "main": "lib/index.js",
-  "scripts": {
-    "postinstall": "npm run lib",
-    "dev": "concurrently \"npm run lib:watch\" \"npm run docs\"",
-    "lib": "babel src/lib -d lib --copy-files",
-    "lib:watch": "babel src/lib -w -d lib --copy-files",
-    "docs": "webpack-dev-server --mode development",
-    "docs:prod": "webpack --mode production"
-  },
-  "keywords": ["react"],
-  "license": "MIT",
-  "peerDependencies": {
-    "react": "^15.3.0 || ^16.2.0",
-    "react-dom": "^15.3.0 || ^16.2.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.46",
-    "@babel/core": "^7.0.0-beta.46",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.46",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.46",
-    "@babel/preset-env": "^7.0.0-beta.46",
-    "@babel/preset-react": "^7.0.0-beta.46",
-    "babel-loader": "^8.0.0-beta.0",
-    "concurrently": "^3.5.1",
-    "css-loader": "^0.28.11",
-    "html-webpack-plugin": "^3.2.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "style-loader": "^0.21.0",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.3"
-  },
-  "author": "po8rewq",
-  "homepage": "https://github.com/po8rewq/react-simple-calendar",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:po8rewq/react-simple-calendar.git"
-  }
+	"name": "react-simple-calendar",
+	"version": "0.1.0",
+	"description": "A minimal calendar component for react.",
+	"main": "lib/index.js",
+	"scripts": {
+		"postinstall": "npm run lib",
+		"dev": "concurrently \"npm run lib:watch\" \"npm run docs\"",
+		"lib": "babel src/lib -d lib --copy-files",
+		"lib:watch": "babel src/lib -w -d lib --copy-files",
+		"docs": "webpack-dev-server --mode development",
+		"docs:prod": "webpack --mode production",
+		"test": "jest"
+	},
+	"keywords": [
+		"react"
+	],
+	"license": "MIT",
+	"peerDependencies": {
+		"react": "^15.3.0 || ^16.2.0",
+		"react-dom": "^15.3.0 || ^16.2.0"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.0.0-beta.46",
+		"@babel/core": "^7.1.2",
+		"@babel/plugin-proposal-class-properties": "^7.0.0-beta.46",
+		"@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.46",
+		"@babel/preset-env": "^7.0.0-beta.46",
+		"@babel/preset-react": "^7.0.0-beta.46",
+		"babel-core": "^7.0.0-bridge.0",
+		"babel-jest": "^23.6.0",
+		"babel-loader": "^8.0.0-beta.0",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-react": "^6.24.1",
+		"concurrently": "^3.5.1",
+		"css-loader": "^0.28.11",
+		"html-webpack-plugin": "^3.2.0",
+		"jest": "^23.6.0",
+		"react": "^16.3.2",
+		"react-dom": "^16.3.2",
+		"react-test-renderer": "^16.5.2",
+		"style-loader": "^0.21.0",
+		"webpack": "^4.6.0",
+		"webpack-cli": "^3.1.1",
+		"webpack-dev-server": "^3.1.3"
+	},
+	"author": "po8rewq",
+	"homepage": "https://github.com/po8rewq/react-simple-calendar",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:po8rewq/react-simple-calendar.git"
+	},
+	"jest": {
+		"rootDir": "./src"
+	}
 }
