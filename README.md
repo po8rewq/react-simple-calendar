@@ -9,7 +9,7 @@ In order to use it, in your project:
 npm install --save git+https://git@github.com/react-simple-calendar.git
 ```
 
-A demo is [available here](docs/index.html).
+A demo is [available here](https://po8rewq.github.io/react-simple-calendar/) and the [source code](docs/index.js).
 
 ## Available properties
 
