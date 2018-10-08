@@ -33,7 +33,7 @@ describe('getDay', () => {
 describe('isToday', () => {
 	it('should always work for today', () => {
 		const now = new Date(Date.now());
-		const week = Math.floor(now.getDate() / 6) - 1;
+		const week = Math.ceil(now.getDate()/7) - 1;
 		const day = now.getDay() - 1;
 		expect(DateUtils.isToday(week, day, now)).toBe(true);
 	});

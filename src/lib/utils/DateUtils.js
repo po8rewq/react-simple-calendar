@@ -27,7 +27,7 @@ export default class DateUtils {
 			case 1:
 				return 'February';
 			case 2:
-				return 'Marsh';
+				return 'March';
 			case 3:
 				return 'April';
 			case 4:
@@ -51,11 +51,11 @@ export default class DateUtils {
 		}
 	};
 
-	static getFirstDayOfTheMonth = (defaultDate) => {
+	static getFirstDayOfTheMonth = defaultDate => {
 		return new Date(defaultDate.getFullYear(), defaultDate.getMonth(), 1);
 	};
 
-	static getLastDayOfPreviousMonth = (defaultDate) => {
+	static getLastDayOfPreviousMonth = defaultDate => {
 		return new Date(defaultDate.getFullYear(), defaultDate.getMonth(), 0);
 	};
 
@@ -66,7 +66,9 @@ export default class DateUtils {
 			// if it's outside of the current month, we display the previous days
 			if (firstD > day + 1) {
 				// last day of the previous month
-				const previousMonth = DateUtils.getLastDayOfPreviousMonth(defaultDate);
+				const previousMonth = DateUtils.getLastDayOfPreviousMonth(
+					defaultDate
+				);
 				return new Date(
 					previousMonth.getFullYear(),
 					previousMonth.getMonth(),
