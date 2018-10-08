@@ -12,7 +12,8 @@ export default class CalendarLine extends PureComponent {
 		showDayNumber: bool,
 		todayStyle: object,
 		highlightStyle: object,
-		notCurrentMonthStyle: object
+		notCurrentMonthStyle: object,
+		firstDayIsMonday: bool
 	};
 
 	render() {
@@ -25,8 +26,11 @@ export default class CalendarLine extends PureComponent {
 			showDayNumber,
 			todayStyle,
 			highlightStyle,
-			notCurrentMonthStyle
+			notCurrentMonthStyle,
+			firstDayIsMonday
 		} = this.props;
+
+		// render each day of the week
 		var list = [0, 1, 2, 3, 4, 5, 6].map(dayOfTheWeek => {
 			return (
 				<CalendarCell
@@ -41,6 +45,7 @@ export default class CalendarLine extends PureComponent {
 					todayStyle={todayStyle}
 					highlightStyle={highlightStyle}
 					notCurrentMonthStyle={notCurrentMonthStyle}
+					firstDayIsMonday={firstDayIsMonday}
 				/>
 			);
 		});

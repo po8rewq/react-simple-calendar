@@ -40,7 +40,7 @@ const CustomTitleCell = props => {
 function Demo() {
 	return (
 		<div>
-			<h1>Component with custom cell</h1>
+			<h2>Component with custom cell</h2>
 			<Calendar
 				currentMonth={new Date(Date.now())}
 				onDateSelected={date => console.log(date)}
@@ -59,13 +59,13 @@ function Demo() {
 }
 
 function Demo1() {
-	var date = new Date('08/05/2018');
+	var date = new Date('07/05/2018');
 	return (
 		<div>
-			<h1>Basic component</h1>
+			<h2>Simple basic calendar</h2>
 			<div className="customCalendarTitle">
 				{/* you could add buttons to navigate between months */}
-				<h1>August</h1>
+				<h3>July</h3>
 			</div>
 			<Calendar
 				className="minimal-calendar"
@@ -77,6 +77,28 @@ function Demo1() {
 				}}
 				showMonthName={false}
 				titleComponent={CustomTitleCell}
+				firstDayIsMonday={true}
+			/>
+		</div>
+	);
+}
+
+function Demo2(props) {
+	var date = props.date;
+	return (
+		<div>
+			<h2>First day is Sunday</h2>
+			<Calendar
+				className="minimal-calendar"
+				currentMonth={date}
+				onDateSelected={date => console.log(date)}
+				cellContainerStyle={{
+					textAlign: 'center',
+					cursor: 'pointer'
+				}}
+				showMonthName={true}
+				titleComponent={CustomTitleCell}
+				firstDayIsMonday={false}
 			/>
 		</div>
 	);
@@ -87,6 +109,7 @@ function Demos() {
 		<div>
 			<Demo />
 			<Demo1 />
+			<Demo2 date={new Date('09/01/2018')} />
 		</div>
 	);
 }

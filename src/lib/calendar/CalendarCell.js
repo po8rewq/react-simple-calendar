@@ -13,7 +13,8 @@ export default class CalendarCell extends Component {
 		showDayNumber: bool,
 		todayStyle: object,
 		highlightStyle: object,
-		notCurrentMonthStyle: object
+		notCurrentMonthStyle: object,
+		firstDayIsMonday: bool
 	};
 
 	state = {
@@ -33,11 +34,17 @@ export default class CalendarCell extends Component {
 			onDateSelected,
 			weekNumber,
 			dayOfTheWeek,
-			currentMonth
+			currentMonth,
+			firstDayIsMonday
 		} = this.props;
 
 		onDateSelected({
-			date: DateUtils.getDay(weekNumber, dayOfTheWeek, currentMonth)
+			date: DateUtils.getDay(
+				weekNumber,
+				dayOfTheWeek,
+				currentMonth,
+				firstDayIsMonday
+			)
 		});
 	}
 
@@ -59,13 +66,15 @@ export default class CalendarCell extends Component {
 			showDayNumber,
 			todayStyle,
 			highlightStyle,
-			notCurrentMonthStyle
+			notCurrentMonthStyle,
+			firstDayIsMonday
 		} = this.props;
 
 		const isToday = DateUtils.isToday(
 			weekNumber,
 			dayOfTheWeek,
-			currentMonth
+			currentMonth,
+			firstDayIsMonday
 		);
 
 		let containerStyle = { ...cellContainerStyle };
@@ -73,7 +82,12 @@ export default class CalendarCell extends Component {
 		if (isToday) {
 			containerStyle = { ...containerStyle, ...todayStyle };
 		} else if (
-			!DateUtils.isSameMonth(weekNumber, dayOfTheWeek, currentMonth)
+			!DateUtils.isSameMonth(
+				weekNumber,
+				dayOfTheWeek,
+				currentMonth,
+				firstDayIsMonday
+			)
 		) {
 			containerStyle = { ...containerStyle, ...notCurrentMonthStyle };
 		}
@@ -82,13 +96,14 @@ export default class CalendarCell extends Component {
 			containerStyle = { ...containerStyle, ...highlightStyle };
 		}
 
-		// the width must be hardcoded, otherwise the calendar won't be correclty displayed
+		// the width must be hard-coded, otherwise the calendar won't be correctly displayed
 		containerStyle.width = '14%';
 
 		const cellDay = DateUtils.getDay(
 			weekNumber,
 			dayOfTheWeek,
-			currentMonth
+			currentMonth,
+			firstDayIsMonday
 		);
 		return (
 			<div
@@ -102,7 +117,8 @@ export default class CalendarCell extends Component {
 						{DateUtils.getDayNumber(
 							weekNumber,
 							dayOfTheWeek,
-							currentMonth
+							currentMonth,
+							firstDayIsMonday
 						)}
 					</span>
 				)}

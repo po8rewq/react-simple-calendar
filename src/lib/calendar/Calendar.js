@@ -9,7 +9,7 @@ export default class Calendar extends Component {
 		currentMonth: object,
 		cellComponent: func,
 		titleComponent: func,
-		// firstDayIsMonday: bool, // TODO:
+		firstDayIsMonday: bool,
 		className: string,
 		showDayNumber: bool,
 		showMonthName: bool,
@@ -20,7 +20,7 @@ export default class Calendar extends Component {
 	};
 
 	static defaultProps = {
-		// firstDayIsMonday: true,
+		firstDayIsMonday: true,
 		currentMonth: new Date(Date.now()),
 		className: 'simple-calendar',
 		showDayNumber: true,
@@ -71,13 +71,17 @@ export default class Calendar extends Component {
 			showMonthName,
 			todayStyle,
 			highlightStyle,
-			notCurrentMonthStyle
+			notCurrentMonthStyle,
+			firstDayIsMonday
 		} = this.props;
 
 		var list = [0, 1, 2, 3, 4, 5, 6].map(weekNumber => {
 			// render the first line which is the name of the days
 			if (weekNumber == 0) {
-				const list = [1, 2, 3, 4, 5, 6, 0].map(this.renderTitleCell);
+				const days = firstDayIsMonday
+					? [1, 2, 3, 4, 5, 6, 0]
+					: [0, 1, 2, 3, 4, 5, 6];
+				const list = days.map(this.renderTitleCell);
 				const style = { display: 'flex', width: '100%' };
 				return (
 					<div
@@ -102,6 +106,7 @@ export default class Calendar extends Component {
 					todayStyle={todayStyle}
 					highlightStyle={highlightStyle}
 					notCurrentMonthStyle={notCurrentMonthStyle}
+					firstDayIsMonday={firstDayIsMonday}
 				/>
 			);
 		});

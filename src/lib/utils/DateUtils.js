@@ -59,37 +59,33 @@ export default class DateUtils {
 		return new Date(defaultDate.getFullYear(), defaultDate.getMonth(), 0);
 	};
 
-	static getDay = (week, day, defaultDate) => {
+	static getDay = (p_week, p_day, defaultDate, firstDayIsMonday) => {
 		const firstD = DateUtils.getFirstDayOfTheMonth(defaultDate).getDay();
-
-		if (week == 0) {
-			// if it's outside of the current month, we display the previous days
-			if (firstD > day + 1) {
-				// last day of the previous month
-				const previousMonth = DateUtils.getLastDayOfPreviousMonth(
-					defaultDate
-				);
-				return new Date(
-					previousMonth.getFullYear(),
-					previousMonth.getMonth(),
-					previousMonth.getDate() - previousMonth.getDay() + day + 1
-				);
-			}
-		}
-
+		const day = p_day + 1;
+		const week = firstD <= 0 ? p_week - 1 : p_week;
 		return new Date(
 			defaultDate.getFullYear(),
 			defaultDate.getMonth(),
-			7 * week + day + 1 - (firstD == 0 ? 1 : firstD - 1)
+			7 * week + day - firstD + (firstDayIsMonday ? 1 : 0)
 		);
 	};
 
-	static getDayNumber = (week, day, defaultDate) => {
-		return DateUtils.getDay(week, day, defaultDate).getDate();
+	static getDayNumber = (week, day, defaultDate, firstDayIsMonday) => {
+		return DateUtils.getDay(
+			week,
+			day,
+			defaultDate,
+			firstDayIsMonday
+		).getDate();
 	};
 
-	static isToday = (week, day, defaultDate) => {
-		const targetDate = DateUtils.getDay(week, day, defaultDate);
+	static isToday = (week, day, defaultDate, firstDayIsMonday) => {
+		const targetDate = DateUtils.getDay(
+			week,
+			day,
+			defaultDate,
+			firstDayIsMonday
+		);
 		const now = new Date(Date.now());
 		return (
 			targetDate.getDate() === now.getDate() &&
@@ -98,8 +94,8 @@ export default class DateUtils {
 		);
 	};
 
-	static isSameMonth(week, day, defaultDate) {
-		const date = DateUtils.getDay(week, day, defaultDate);
+	static isSameMonth(week, day, defaultDate, firstDayIsMonday) {
+		const date = DateUtils.getDay(week, day, defaultDate, firstDayIsMonday);
 		return date.getMonth() === defaultDate.getMonth();
 	}
 }
