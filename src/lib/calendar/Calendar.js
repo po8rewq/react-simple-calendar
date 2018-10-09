@@ -1,13 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import CalendarLine from './CalendarLine';
 import DateUtils from '../utils/DateUtils';
-import { func, object, bool, string } from 'prop-types';
+import { func, object, bool, string, any } from 'prop-types';
 
 export default class Calendar extends Component {
 	static propTypes = {
 		onDateSelected: func,
-		currentMonth: object,
+		currentMonth: object.isRequired,
 		cellComponent: func,
+		cellComponentProps: any,
 		titleComponent: func,
 		firstDayIsMonday: bool,
 		className: string,
@@ -21,10 +22,10 @@ export default class Calendar extends Component {
 
 	static defaultProps = {
 		firstDayIsMonday: true,
-		currentMonth: new Date(Date.now()),
-		className: 'simple-calendar',
 		showDayNumber: true,
 		showMonthName: true,
+		// Default style
+		className: 'simple-calendar',
 		cellContainerStyle: {
 			borderTop: '2px solid #4a9ff5',
 			cursor: 'pointer',
@@ -47,10 +48,7 @@ export default class Calendar extends Component {
 		};
 		if (this.props.titleComponent) {
 			return (
-				<this.props.titleComponent
-					key={day.toString()}
-					dayOfTheWeek={day}
-				/>
+				<this.props.titleComponent key={day.toString()} dayOfTheWeek={day} />
 			);
 		}
 		return (
@@ -62,16 +60,9 @@ export default class Calendar extends Component {
 
 	render() {
 		const {
-			onDateSelected,
 			currentMonth,
-			cellComponent,
 			className,
-			cellContainerStyle,
-			showDayNumber,
 			showMonthName,
-			todayStyle,
-			highlightStyle,
-			notCurrentMonthStyle,
 			firstDayIsMonday
 		} = this.props;
 
@@ -84,30 +75,17 @@ export default class Calendar extends Component {
 				const list = days.map(this.renderTitleCell);
 				const style = { display: 'flex', width: '100%' };
 				return (
-					<div
-						key={weekNumber}
-						className="calendar-line"
-						style={style}
-					>
+					<div key={weekNumber} className="calendar-line" style={style}>
 						{list}
 					</div>
 				);
 			}
-
-			return (
-				<CalendarLine
-					key={weekNumber}
-					weekNumber={weekNumber - 1}
-					onDateSelected={onDateSelected}
-					currentMonth={currentMonth}
-					cellComponent={cellComponent}
-					cellContainerStyle={cellContainerStyle}
-					showDayNumber={showDayNumber}
-					todayStyle={todayStyle}
-					highlightStyle={highlightStyle}
-					notCurrentMonthStyle={notCurrentMonthStyle}
-					firstDayIsMonday={firstDayIsMonday}
-				/>
+			return React.createElement(
+				CalendarLine,
+				Object.assign({}, this.props, {
+					key: weekNumber,
+					weekNumber: weekNumber - 1
+				})
 			);
 		});
 

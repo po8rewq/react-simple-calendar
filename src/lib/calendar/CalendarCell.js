@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DateUtils from '../utils/DateUtils';
-import { func, number, object, bool } from 'prop-types';
+import { func, number, object, bool, any } from 'prop-types';
 
 export default class CalendarCell extends Component {
 	static propTypes = {
@@ -9,6 +9,7 @@ export default class CalendarCell extends Component {
 		dayOfTheWeek: number.isRequired,
 		currentMonth: object.isRequired,
 		cellComponent: func,
+		cellComponentProps: any,
 		cellContainerStyle: object,
 		showDayNumber: bool,
 		todayStyle: object,
@@ -67,7 +68,8 @@ export default class CalendarCell extends Component {
 			todayStyle,
 			highlightStyle,
 			notCurrentMonthStyle,
-			firstDayIsMonday
+			firstDayIsMonday,
+			cellComponentProps
 		} = this.props;
 
 		const isToday = DateUtils.isToday(
@@ -124,6 +126,7 @@ export default class CalendarCell extends Component {
 				)}
 				{this.props.cellComponent && (
 					<this.props.cellComponent
+						customProps={cellComponentProps}
 						date={cellDay}
 						onDateSelected={onDateSelected}
 						mouseOver={this.state.mouseOver}
