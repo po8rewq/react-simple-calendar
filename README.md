@@ -18,7 +18,7 @@ A demo is [available here](https://po8rewq.github.io/react-simple-calendar/) and
 | className            | `string` | if you need to add a class to the `Calendar` component - default: `calendar` |
 | currentMonth         | `object` | The date of the displayed month - `Date.now()` by default                    |
 | cellComponent        | `func`   | A child component to be displayed in the `CalendarCell`                      |
-| cellComponentProps   | `any`    |                                                                              |
+| cellComponentProps   | `any`    | `cellComponent` custom props                                                 |
 | titleComponent       | `func`   | If you want to have a custom title instead of the default one                |
 | onDateSelected       | `func`   | The callback called when a date is selected                                  |
 | showDayNumber        | `bool`   | true if you want to day to be displayed in the cell container                |
@@ -31,6 +31,6 @@ A demo is [available here](https://po8rewq.github.io/react-simple-calendar/) and
 
 ## Notes
 
-There is multiple way to send data to the `custom cell`. If you're using Redux, you can use `mapStateToProps`, otherwise you can specify a value for `cellComponentProps`, and this will be send to the `CustomCell` as a `customProps` prop - so please be careful -.
+There are multiple way to send data to the `custom cell`. If you're using Redux, you can use `mapStateToProps`, otherwise you can specify a value for `cellComponentProps`, and this will be send to the `CustomCell` as a `customProps` prop.
 
 Based on [react-npm-component-starter](https://github.com/markusenglund/react-npm-component-starter).
