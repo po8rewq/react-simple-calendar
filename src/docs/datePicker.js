@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Calendar from '../../lib';
 
 export default class DatePicker extends Component {
@@ -65,55 +65,65 @@ export default class DatePicker extends Component {
 	render() {
 		var date = this.state.date;
 		return (
-			<div
-				className="container"
-				style={{
-					marginTop: '20px',
-					padding: '10px',
-					width: '300px',
-					border: '1px solid #cecece'
-				}}
-			>
-				<div className="row">
-					<div className="col-3">
-						<button
-							type="button"
-							className="btn btn-primary btn-sm"
-							onClick={this.prevMonth}
-						>
-							{'<'}
-						</button>
-					</div>
-					<div
-						className="col-6"
-						style={{ textAlign: 'center', fontWeight: 'bold' }}
-					>
-						{this.getMonthName(date)}
-					</div>
-					<div className="col-3" style={{ textAlign: 'right' }}>
-						<button
-							type="button"
-							className="btn btn-primary btn-sm"
-							onClick={this.nextMonth}
-						>
-							{'>'}
-						</button>
-					</div>
-				</div>
-				<Calendar
-					className="minimal-calendar"
-					currentMonth={date}
-					onDateSelected={date => console.log(date)}
-					cellContainerStyle={{
-						textAlign: 'center',
-						cursor: 'pointer'
+			<Fragment>
+				<div
+					className="container"
+					style={{
+						marginTop: '20px',
+						padding: '10px',
+						width: '300px',
+						border: '1px solid #cecece'
 					}}
-					showMonthName={false}
-					titleComponent={CustomTitleCell}
-					firstDayIsMonday={true}
-					style={{ width: '100%' }}
-				/>
-			</div>
+				>
+					<div className="row">
+						<div className="col-3">
+							<button
+								type="button"
+								className="btn btn-primary btn-sm"
+								onClick={this.prevMonth}
+							>
+								{'<'}
+							</button>
+						</div>
+						<div
+							className="col-6"
+							style={{ textAlign: 'center', fontWeight: 'bold' }}
+						>
+							{this.getMonthName(date)}
+						</div>
+						<div className="col-3" style={{ textAlign: 'right' }}>
+							<button
+								type="button"
+								className="btn btn-primary btn-sm"
+								onClick={this.nextMonth}
+							>
+								{'>'}
+							</button>
+						</div>
+					</div>
+					<Calendar
+						className="minimal-calendar"
+						currentMonth={date}
+						onDateSelected={date => console.log(date)}
+						cellContainerStyle={{
+							textAlign: 'center',
+							cursor: 'pointer'
+						}}
+						showMonthName={false}
+						titleComponent={CustomTitleCell}
+						firstDayIsMonday={true}
+						style={{ width: '100%' }}
+					/>
+				</div>
+				<br />
+				<div className="alert alert-primary" role="alert">
+					The source code can be find{' '}
+					<a href="https://github.com/po8rewq/react-simple-calendar/blob/master/src/docs/datePicker.js">
+						here
+					</a>
+					.
+				</div>
+			</Fragment>
 		);
 	}
 }

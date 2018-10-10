@@ -36,7 +36,9 @@ class Demos extends Component {
 		return (
 			<li className="nav-item" key={item.id.toString()}>
 				<a
-					className={`nav-link ${this.state.demo == item.id ? 'active' : ''}`}
+					className={`nav-link ${
+						this.state.demo == item.id ? 'active' : ''
+					}`}
 					href="#"
 					demo={item.id}
 					onClick={this.onClickNavLink}
@@ -54,15 +56,21 @@ class Demos extends Component {
 		];
 
 		return (
-			<div className="container-fluid">
+			<div className="container">
 				<nav className="navbar navbar-light bg-light">
 					<a className="navbar-brand" href="#">
-						React-simple-calendar demo
+						React-simple-calendar demos
 					</a>
 				</nav>
-
+				<br />
+				<div className="alert alert-primary" role="alert">
+					More info on the{' '}
+					<a href="https://github.com/po8rewq/react-simple-calendar">
+						Github page
+					</a>
+				</div>
+				<br />
 				<ul className="nav nav-tabs">{list.map(this.renderNavItem)}</ul>
-
 				{this.renderDemo(this.state.demo)}
 			</div>
 		);

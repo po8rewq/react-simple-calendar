@@ -8,7 +8,10 @@ const CustomEvent = props => {
 	};
 
 	return (
-		<li className="list-group-item list-group-item-action" onClick={onClick}>
+		<li
+			className="list-group-item list-group-item-action"
+			onClick={onClick}
+		>
 			{props.event.name}
 		</li>
 	);
@@ -27,7 +30,10 @@ const CustomCell = props => {
 		return null;
 	});
 	return (
-		<ul className="list-group" style={{ width: '100%', textAlign: 'center' }}>
+		<ul
+			className="list-group"
+			style={{ width: '100%', textAlign: 'center' }}
+		>
 			{list}
 		</ul>
 	);
@@ -71,6 +77,13 @@ export default class Demo extends Component {
 					}}
 					highlightStyle={{ backgroundColor: '#cecece' }}
 				/>
+				<br />
+				<div className="alert alert-primary" role="alert">
+					The source code can be find{' '}
+					<a href="https://github.com/po8rewq/react-simple-calendar/blob/master/src/docs/customCell.js">
+						here
+					</a>.
+				</div>
 			</div>
 		);
 	}
