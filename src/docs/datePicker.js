@@ -117,7 +117,7 @@ export default class DatePicker extends Component {
 				</div>
 				<br />
 				<div className="alert alert-primary" role="alert">
-					The source code can be find{' '}
+					The source code can be found{' '}
 					<a href="https://github.com/po8rewq/react-simple-calendar/blob/master/src/docs/datePicker.js">
 						here
 					</a>

@@ -79,7 +79,7 @@ export default class Demo extends Component {
 				/>
 				<br />
 				<div className="alert alert-primary" role="alert">
-					The source code can be find{' '}
+					The source code can be found{' '}
 					<a href="https://github.com/po8rewq/react-simple-calendar/blob/master/src/docs/customCell.js">
 						here
 					</a>.
