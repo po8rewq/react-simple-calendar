@@ -3,136 +3,130 @@ import DateUtils from '../utils/DateUtils';
 import { func, number, object, bool, any } from 'prop-types';
 
 export default class CalendarCell extends Component {
-	static propTypes = {
-		onDateSelected: func.isRequired,
-		weekNumber: number.isRequired,
-		dayOfTheWeek: number.isRequired,
-		currentMonth: object.isRequired,
-		cellComponent: func,
-		cellComponentProps: any,
-		cellContainerStyle: object,
-		showDayNumber: bool,
-		todayStyle: object,
-		highlightStyle: object,
-		notCurrentMonthStyle: object,
-		firstDayIsMonday: bool
-	};
+  static propTypes = {
+    onDateSelected: func.isRequired,
+    weekNumber: number.isRequired,
+    dayOfTheWeek: number.isRequired,
+    currentMonth: object.isRequired,
+    cellComponent: func,
+    cellComponentProps: any,
+    cellContainerStyle: object,
+    showDayNumber: bool,
+    todayStyle: object,
+    highlightStyle: object,
+    notCurrentMonthStyle: object,
+    firstDayIsMonday: bool
+  };
 
-	state = {
-		mouseOver: false
-	};
 
-	constructor(props) {
-		super(props);
-		this.onClick = this.onClick.bind(this);
-		this.onMouseOver = this.onMouseOver.bind(this);
-		this.onMouseOut = this.onMouseOut.bind(this);
-	}
 
-	onClick(event) {
-		event.preventDefault();
-		const {
-			onDateSelected,
-			weekNumber,
-			dayOfTheWeek,
-			currentMonth,
-			firstDayIsMonday
-		} = this.props;
+  constructor(props) {
+    super(props);
+    this.state = {
+      mouseOver: false
+    };
+  }
 
-		onDateSelected({
-			date: DateUtils.getDay(
-				weekNumber,
-				dayOfTheWeek,
-				currentMonth,
-				firstDayIsMonday
-			)
-		});
-	}
+  onClick = (event) => {
+    event.preventDefault();
+    const {
+      onDateSelected,
+      weekNumber,
+      dayOfTheWeek,
+      currentMonth,
+      firstDayIsMonday
+    } = this.props;
 
-	onMouseOver(_) {
-		this.setState({ mouseOver: true });
-	}
+    onDateSelected({
+      date: DateUtils.getDay(
+        weekNumber,
+        dayOfTheWeek,
+        currentMonth,
+        firstDayIsMonday
+      )
+    });
+  }
 
-	onMouseOut(_) {
-		this.setState({ mouseOver: false });
-	}
+  onMouseOver = (_) => this.setState({ mouseOver: true })
 
-	render() {
-		const {
-			weekNumber,
-			dayOfTheWeek,
-			currentMonth,
-			onDateSelected,
-			cellContainerStyle,
-			showDayNumber,
-			todayStyle,
-			highlightStyle,
-			notCurrentMonthStyle,
-			firstDayIsMonday,
-			cellComponentProps
-		} = this.props;
+  onMouseOut = (_) => this.setState({ mouseOver: false })
 
-		const isToday = DateUtils.isToday(
-			weekNumber,
-			dayOfTheWeek,
-			currentMonth,
-			firstDayIsMonday
-		);
+  render() {
+    const {
+      weekNumber,
+      dayOfTheWeek,
+      currentMonth,
+      onDateSelected,
+      cellContainerStyle,
+      showDayNumber,
+      todayStyle,
+      highlightStyle,
+      notCurrentMonthStyle,
+      firstDayIsMonday,
+      cellComponentProps
+    } = this.props;
 
-		let containerStyle = { ...cellContainerStyle };
+    const isToday = DateUtils.isToday(
+      weekNumber,
+      dayOfTheWeek,
+      currentMonth,
+      firstDayIsMonday
+    );
 
-		if (isToday) {
-			containerStyle = { ...containerStyle, ...todayStyle };
-		} else if (
-			!DateUtils.isSameMonth(
-				weekNumber,
-				dayOfTheWeek,
-				currentMonth,
-				firstDayIsMonday
-			)
-		) {
-			containerStyle = { ...containerStyle, ...notCurrentMonthStyle };
-		}
+    let containerStyle = { ...cellContainerStyle };
 
-		if (this.state.mouseOver) {
-			containerStyle = { ...containerStyle, ...highlightStyle };
-		}
+    if (isToday) {
+      containerStyle = { ...containerStyle, ...todayStyle };
+    } else if (
+      !DateUtils.isSameMonth(
+        weekNumber,
+        dayOfTheWeek,
+        currentMonth,
+        firstDayIsMonday
+      )
+    ) {
+      containerStyle = { ...containerStyle, ...notCurrentMonthStyle };
+    }
 
-		// the width must be hard-coded, otherwise the calendar won't be correctly displayed
-		containerStyle.width = '14%';
+    if (this.state.mouseOver) {
+      containerStyle = { ...containerStyle, ...highlightStyle };
+    }
 
-		const cellDay = DateUtils.getDay(
-			weekNumber,
-			dayOfTheWeek,
-			currentMonth,
-			firstDayIsMonday
-		);
-		return (
-			<div
-				onClick={this.onClick}
-				onMouseOver={this.onMouseOver}
-				onMouseOut={this.onMouseOut}
-				style={containerStyle}
-			>
-				{showDayNumber && (
-					<span className="day-number">
-						{DateUtils.getDayNumber(
-							weekNumber,
-							dayOfTheWeek,
-							currentMonth,
-							firstDayIsMonday
-						)}
-					</span>
-				)}
-				{this.props.cellComponent && (
-					<this.props.cellComponent
-						customProps={cellComponentProps}
-						date={cellDay}
-						onDateSelected={onDateSelected}
-						mouseOver={this.state.mouseOver}
-					/>
-				)}
-			</div>
-		);
-	}
+    // the width must be hard-coded, otherwise the calendar won't be correctly displayed
+    containerStyle.width = '14%';
+
+    const cellDay = DateUtils.getDay(
+      weekNumber,
+      dayOfTheWeek,
+      currentMonth,
+      firstDayIsMonday
+    );
+    return (
+      <div
+        onClick={this.onClick}
+        onMouseOver={this.onMouseOver}
+        onMouseOut={this.onMouseOut}
+        style={containerStyle}
+      >
+        {showDayNumber && (
+          <span className="day-number">
+            {DateUtils.getDayNumber(
+              weekNumber,
+              dayOfTheWeek,
+              currentMonth,
+              firstDayIsMonday
+            )}
+          </span>
+        )}
+        {this.props.cellComponent && (
+          <this.props.cellComponent
+            customProps={cellComponentProps}
+            date={cellDay}
+            onDateSelected={onDateSelected}
+            mouseOver={this.state.mouseOver}
+          />
+        )}
+      </div>
+    );
+  }
 }
