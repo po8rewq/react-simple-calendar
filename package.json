@@ -4,7 +4,6 @@
   "description": "A minimal calendar component for react.",
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "npm test && npm run lib",
     "dev": "concurrently \"npm run lib:watch\" \"npm run docs\"",
     "lib": "babel src/lib -d lib --ignore '**/__tests__'",
     "lib:watch": "babel src/lib -w -d lib --ignore '**/__tests__'",
@@ -56,6 +55,6 @@
   },
   "jest": {
     "rootDir": "./src",
-    "setupTestFrameworkScriptFile": "./setupTests.js"
+    "setupFilesAfterEnv": "./setupTests.js"
   }
 }
