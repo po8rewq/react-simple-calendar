@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import CustomCell from './customCell';
 import DatePicker from './datePicker';
 import './styles.css';
@@ -8,7 +8,7 @@ class Demos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      demo: 0
+      demo: 0,
     };
   }
 
@@ -27,16 +27,14 @@ class Demos extends Component {
     event.preventDefault();
     const newDemo = parseInt(event.currentTarget.getAttribute('demo'));
     if (this.state.demo != newDemo) this.setState({ demo: newDemo });
-  }
+  };
 
   renderNavItem = (item) => {
     return (
-      <li className="nav-item" key={item.id.toString()}>
+      <li className='nav-item' key={item.id.toString()}>
         <a
-          className={`nav-link ${
-            this.state.demo == item.id ? 'active' : ''
-            }`}
-          href="#"
+          className={`nav-link ${this.state.demo == item.id ? 'active' : ''}`}
+          href='#'
           demo={item.id}
           onClick={this.onClickNavLink}
         >
@@ -44,34 +42,35 @@ class Demos extends Component {
         </a>
       </li>
     );
-  }
+  };
 
   render() {
     const list = [
       { name: 'With custom cell', id: 0 },
-      { name: 'Date picker', id: 1 }
+      { name: 'Date picker', id: 1 },
     ];
 
     return (
-      <div className="container">
-        <nav className="navbar navbar-light bg-light">
-          <a className="navbar-brand" href="#">
+      <div className='container'>
+        <nav className='navbar navbar-light bg-light'>
+          <a className='navbar-brand' href='#'>
             React-simple-calendar demos
-					</a>
+          </a>
         </nav>
         <br />
-        <div className="alert alert-primary" role="alert">
+        <div className='alert alert-primary' role='alert'>
           More info on the{' '}
-          <a href="https://github.com/po8rewq/react-simple-calendar">
+          <a href='https://github.com/po8rewq/react-simple-calendar'>
             Github page
-					</a>
+          </a>
         </div>
         <br />
-        <ul className="nav nav-tabs">{list.map(this.renderNavItem)}</ul>
+        <ul className='nav nav-tabs'>{list.map(this.renderNavItem)}</ul>
         {this.renderDemo(this.state.demo)}
       </div>
     );
   }
 }
 
-render(<Demos />, document.getElementById('app'));
+const root = createRoot(document.getElementById('app'));
+root.render(<Demos />);
