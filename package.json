@@ -8,7 +8,7 @@
     "dev": "concurrently \"npm run lib:watch\" \"npm run docs\"",
     "lib": "babel src/lib -d lib --ignore '**/__tests__'",
     "lib:watch": "babel src/lib -w -d lib --ignore '**/__tests__'",
-    "docs": "webpack-dev-server --mode development",
+    "docs": "webpack serve",
     "docs:prod": "webpack --mode production",
     "test": "jest"
   },
