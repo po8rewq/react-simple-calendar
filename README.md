@@ -6,7 +6,7 @@ This component is still WIP, so not on NPM yet.
 In order to use it, in your project:
 
 ```cmd
-npm install --save https://github.com/po8rewq/react-simple-calendar.git
+npm install --save git+https://github.com/po8rewq/react-simple-calendar.git
 ```
 
 A demo is [available here](https://po8rewq.github.io/react-simple-calendar/) and the [source code](src/docs/index.js).

@@ -1,9 +1,10 @@
 {
   "name": "react-simple-calendar",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A minimal calendar component for react.",
   "main": "lib/index.js",
   "scripts": {
+    "postinstall": "npm run lib",
     "dev": "concurrently \"npm run lib:watch\" \"npm run docs\"",
     "lib": "babel src/lib -d lib --ignore '**/__tests__'",
     "lib:watch": "babel src/lib -w -d lib --ignore '**/__tests__'",
