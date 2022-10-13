@@ -17,7 +17,7 @@ export default class Calendar extends PureComponent {
     cellContainerStyle: object,
     highlightStyle: object,
     todayStyle: object,
-    notCurrentMonthStyle: object
+    notCurrentMonthStyle: object,
   };
 
   static defaultProps = {
@@ -29,39 +29,39 @@ export default class Calendar extends PureComponent {
     cellContainerStyle: {
       borderTop: '2px solid #4a9ff5',
       cursor: 'pointer',
-      margin: '4px'
+      margin: '4px',
     },
     highlightStyle: { backgroundColor: '#c2fcf6' },
     todayStyle: { color: 'red' },
-    notCurrentMonthStyle: { color: '#cecece' }
+    notCurrentMonthStyle: { color: '#cecece' },
   };
 
   renderTitleCell = (day) => {
     const style = {
       width: '14%',
-      textAlign: 'center'
+      textAlign: 'center',
     };
     if (this.props.titleComponent) {
-      return (
-        <this.props.titleComponent key={day.toString()} dayOfTheWeek={day} />
-      );
+      return React.createElement(this.props.titleComponent, {
+        key: day.toString(),
+        dayOfTheWeek: day,
+      });
+      //return (
+      //<this.props.titleComponent key={day.toString()} dayOfTheWeek={day} />
+      //);
     }
     return (
-      <div className="calendar-title" style={style} key={day.toString()}>
+      <div className='calendar-title' style={style} key={day.toString()}>
         {DateUtils.getDayName(day)}
       </div>
     );
-  }
+  };
 
   render() {
-    const {
-      currentMonth,
-      className,
-      showMonthName,
-      firstDayIsMonday
-    } = this.props;
+    const { currentMonth, className, showMonthName, firstDayIsMonday } =
+      this.props;
 
-    var list = [0, 1, 2, 3, 4, 5, 6].map(weekNumber => {
+    var list = [0, 1, 2, 3, 4, 5, 6].map((weekNumber) => {
       // render the first line which is the name of the days
       if (weekNumber == 0) {
         const days = firstDayIsMonday
@@ -70,7 +70,7 @@ export default class Calendar extends PureComponent {
         const list = days.map(this.renderTitleCell);
         const style = { display: 'flex', width: '100%' };
         return (
-          <div key={weekNumber} className="calendar-line" style={style}>
+          <div key={weekNumber} className='calendar-line' style={style}>
             {list}
           </div>
         );
@@ -79,7 +79,7 @@ export default class Calendar extends PureComponent {
         CalendarLine,
         Object.assign({}, this.props, {
           key: weekNumber,
-          weekNumber: weekNumber - 1
+          weekNumber: weekNumber - 1,
         })
       );
     });
@@ -87,7 +87,9 @@ export default class Calendar extends PureComponent {
     return (
       <>
         {showMonthName && (
-          <h1>{`${DateUtils.getMonthName(currentMonth.getMonth())} ${currentMonth.getFullYear()}`}</h1>
+          <h1>{`${DateUtils.getMonthName(
+            currentMonth.getMonth()
+          )} ${currentMonth.getFullYear()}`}</h1>
         )}
         <div className={className}>{list}</div>
       </>

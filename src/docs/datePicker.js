@@ -1,5 +1,34 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Calendar from '../../lib';
+
+const CustomTitleCell = (props) => {
+  const style = { width: '14%', textAlign: 'center', marginBottom: '15px' };
+  let day = '';
+  switch (props.dayOfTheWeek) {
+    case 0:
+      day = 'Sun';
+      break;
+    case 1:
+      day = 'Mon';
+      break;
+    case 2:
+      day = 'Tue';
+      break;
+    case 3:
+      day = 'Wed';
+      break;
+    case 4:
+      day = 'Thu';
+      break;
+    case 5:
+      day = 'Fri';
+      break;
+    case 6:
+      day = 'Sat';
+      break;
+  }
+  return <div style={style}>{day}</div>;
+};
 
 export default class DatePicker extends Component {
   constructor(props) {
@@ -114,7 +143,7 @@ export default class DatePicker extends Component {
         </div>
         <br />
         <div className='alert alert-primary' role='alert'>
-          The source code can be find{' '}
+          The source code can be found{' '}
           <a href='https://github.com/po8rewq/react-simple-calendar/blob/master/src/docs/datePicker.js'>
             here
           </a>
@@ -124,32 +153,3 @@ export default class DatePicker extends Component {
     );
   }
 }
-
-const CustomTitleCell = (props) => {
-  const style = { width: '14%', textAlign: 'center', marginBottom: '15px' };
-  let day = '';
-  switch (props.dayOfTheWeek) {
-    case 0:
-      day = 'Sun';
-      break;
-    case 1:
-      day = 'Mon';
-      break;
-    case 2:
-      day = 'Tue';
-      break;
-    case 3:
-      day = 'Wed';
-      break;
-    case 4:
-      day = 'Thu';
-      break;
-    case 5:
-      day = 'Fri';
-      break;
-    case 6:
-      day = 'Sat';
-      break;
-  }
-  return <div style={style}>{day}</div>;
-};
