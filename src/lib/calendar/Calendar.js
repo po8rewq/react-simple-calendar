@@ -46,9 +46,6 @@ export default class Calendar extends PureComponent {
         key: day.toString(),
         dayOfTheWeek: day,
       });
-      //return (
-      //<this.props.titleComponent key={day.toString()} dayOfTheWeek={day} />
-      //);
     }
     return (
       <div className='calendar-title' style={style} key={day.toString()}>
